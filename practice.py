@@ -95,15 +95,16 @@ resp = requests.get(url=url, params=params)
 #resp.text
 root = ET.fromstring(resp.text)
 for record in root.findall('{http://www.openarchives.org/OAI/2.0/}ListRecords')[0]:
-    for elements in record.findall('{http://www.openarchives.org/OAI/2.0/}metadata')[0]:
-#        for title in elements.findall('{http://arxiv.org/OAI/arXiv/}title'):
-#            print(title.text)
-        for authorList in elements.findall('{http://arxiv.org/OAI/arXiv/}authors'):
-            for author in authorList:
-                firstname = author.findall('{http://arxiv.org/OAI/arXiv/}keyname')[0].text
-                if len(author.findall('{http://arxiv.org/OAI/arXiv/}forenames')):
-                    lastname = author.findall('{http://arxiv.org/OAI/arXiv/}forenames')[0].text
-                print(firstname+" "+lastname)
-                
+    if len(record.findall('{http://www.openarchives.org/OAI/2.0/}metadata')) > 0:    
+        for elements in record.findall('{http://www.openarchives.org/OAI/2.0/}metadata')[0]:
+            for title in elements.findall('{http://arxiv.org/OAI/arXiv/}title'):
+                print(title.text)
+            for authorList in elements.findall('{http://arxiv.org/OAI/arXiv/}authors'):
+                for author in authorList:
+                    firstname = author.findall('{http://arxiv.org/OAI/arXiv/}keyname')[0].text
+                    if len(author.findall('{http://arxiv.org/OAI/arXiv/}forenames')):
+                        lastname = author.findall('{http://arxiv.org/OAI/arXiv/}forenames')[0].text
+                    print(firstname+" "+lastname)
+                    
             
             
