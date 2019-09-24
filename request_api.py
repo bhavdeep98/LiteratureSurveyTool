@@ -8,7 +8,7 @@ Created on Sat Sep 14 19:04:58 2019
 import logging
 import requests
 import json
-import os
+#import os
 """
     Link for Request Documentaion: 
         https://2.python-requests.org/en/master/api/
